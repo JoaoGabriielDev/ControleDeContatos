@@ -1,7 +1,16 @@
+using ControleDeContatos.Data;
+using System.Collections.Generic;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<BancoContext>(options => {
+
+    options.UseNpSql(Configuration.GetConnectionString("Defaut"));
+});
 
 var app = builder.Build();
 
