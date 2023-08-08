@@ -4,12 +4,13 @@ using System.Collections.Generic;
 
 var builder = WebApplication.CreateBuilder(args);
 
+public IConfiguration Configuration { get; }
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<BancoContext>(options => {
 
-    options.UseNpSql(Configuration.GetConnectionString("Defaut"));
+    options.UseNpgsql(Configuration.GetConnectionStrings("Defaut"));
 });
 
 var app = builder.Build();
